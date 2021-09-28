@@ -1,0 +1,82 @@
+ function createCard() {
+
+            var modalData = [
+                {
+                    "id": "job1",
+                    "title": "job1 title",
+                    "header": "job1 header",
+                    "text": "job1 body",
+                    "footer": '<div class="container"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditBookingModal">Edit</button>' +
+                        '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#DeleteBookingModal">Delete</button></div>'
+                }, {
+                    "id": "job2",
+                    "title": "job2 title",
+                    "header": "job2 header",
+                    "text": "job2 body",
+                    "footer": '<div class="container"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditBookingModal">Edit</button>' +
+                        '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#DeleteBookingModal">Delete</button></div>'
+                }
+            ];
+
+            AddCard(modalData);
+        }
+        
+         var AddCard = function(data) {
+            for (var i = 0; i < data.length; i++) {
+                var cardcontainer = $('<div class="col-sm-3 col-md-3 pb-2"></div>');
+                //var myPanel = $('<div class="card card-outline-info" id="' + data[i].id + ' Panel"><div class="card-block"><div class="card-title"><span>Card #' + data[i].id + '</span><button type="button" class="close" data-target="#' + data[i].id + 'Panel" data-dismiss="alert"><span class="float-right"><i class="fa fa-remove"></i></span></button></div><p>Some text in ' + data[i].id + ' </p><img src="//placehold.it/50/eeeeee" class="rounded rounded-circle"></div></div>');
+                //myPanel.appendTo(myCol);
+                //myCol.appendTo('#bookingjobs');
+
+                let card = document.createElement('div');
+                card.className = 'card card-outline-info';
+                card.id = data[i].id;
+
+                // Header - Part of Card
+
+                let cardheader = document.createElement('h5');
+                cardheader.className = 'card-header';
+                cardheader.innerText = data[i].header;
+
+                // Body - Part of Card
+
+                let cardbody = document.createElement('div');
+                cardbody.className = 'card-body';
+
+                // Title - Part of Card Body
+
+                let cardtitle = document.createElement('h5');
+                cardtitle.className = 'card-title';
+                cardtitle.innerText = data[i].title;
+
+                // Text - Part of Card Body
+
+                let cardtext = document.createElement('p');
+                cardtext.className = 'card-text';
+                cardtext.innerText = data[i].text;
+
+                // Footer - Part of Card
+
+                let cardfooter = document.createElement('div');
+                cardfooter.className = 'card-footer text-center';
+                cardfooter.innerHTML = data[i].footer;
+
+                cardbody.appendChild(cardtitle);
+                cardbody.appendChild(cardtext);
+
+                card.appendChild(cardheader);
+                card.appendChild(cardbody);
+                card.appendChild(cardfooter);
+
+                cardcontainer.append(card);
+
+                $("#bookingjobs").append(cardcontainer);
+            }
+
+            //$('.close').on('click',
+            //    function(e) {
+            //        e.stopPropagation();
+            //        var $target = $(this).parents('.col-sm-3');
+            //        $target.hide('slow', function() { $target.remove(); });
+            //    });
+        };
